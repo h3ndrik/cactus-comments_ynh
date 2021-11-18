@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cactus Comments Test</title>
+    <script type="text/javascript" src="https://__DOMAIN____PATH_URL__/cactus.js"></script>
+    <link rel="stylesheet" href="https://__DOMAIN____PATH_URL__/style.css" type="text/css" />
+  </head>
+  <body>
+    <h1>Cactus Comments - Test Chat</h1>
+
+    <div id="comment-section"></div>
+    <script>
+      initComments({
+        node: document.getElementById("comment-section"),
+        defaultHomeserverUrl: "https://__SYNAPSE_DOMAIN__",
+        guestPostingEnabled: true,
+        serverName: "__SYNAPSE_SERVER_NAME__",
+        siteName: "comment-test",
+        commentSectionId: "example1"
+      })
+    </script>
+
+  </body>
+</html>
+

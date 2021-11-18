@@ -39,6 +39,9 @@ else
 synapse_instance="synapse__$synapsenumber"
 fi
 
+synapse_server_name=$(ynh_app_setting_get --app $synapse_instance --key server_name)
+synapse_domain=$(ynh_app_setting_get --app $synapse_instance --key domain)
+
 ### If it's a multi-instance app, meaning it can be installed several times independently
 ### The id of the app as stated in the manifest is available as $YNH_APP_ID
 ### The instance number is available as $YNH_APP_INSTANCE_NUMBER (equals "1", "2"...)
@@ -150,6 +153,11 @@ ynh_app_setting_set --app=$app --key=web_path --value=$web_path
 mkdir -p $web_path
 ynh_setup_source --dest_dir="$web_path" --source_id=client-js
 ynh_setup_source --dest_dir="$web_path" --source_id=client-css
+
+ynh_replace_string --match_string="__SYNAPSE_DOMAIN__" --replace_string="$synapse_domain" --target_file="$web_path/comment-test.html"
+ynh_replace_string --match_string="__SYNAPSE_SERVER_NAME__" --replace_string="$synapse_server_name" --target_file="$web_path/comment-test.html"
+ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="$web_path/comment-test.html"
+ynh_replace_string --match_string="__PATH_URL__" --replace_string="$path_url" --target_file="$web_path/comment-test.html"
 
 # FIXME: this should be managed by the core in the future
 # Here, as a packager, you may have to tweak the ownerhsip/permissions
