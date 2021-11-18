@@ -9,7 +9,7 @@ Group=__APP__
 WorkingDirectory=__FINALPATH__/
 EnvironmentFile=__FINALPATH__/env
 Environment="PYTHONUNBUFFERED=1"
-ExecStart=__FINALPATH__/venv/bin/gunicorn -w 4 -b 0.0.0.0:5000 --timeout 500 app:create_app_from_env()
+ExecStart=__FINALPATH__/venv/bin/gunicorn -w 4 -b 0.0.0.0:__PORT__ --timeout 500 app:create_app_from_env()
 StandardOutput=append:/var/log/__APP__/__APP__.log
 StandardError=inherit
 
