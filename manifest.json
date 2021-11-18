@@ -33,13 +33,20 @@
         "install" : [
             {
                 "name": "domain",
-                "type": "domain"
+                "type": "domain",
+                "ask": {
+                    "en": "Choose a domain for the webclient"
+                }
             },
             {
                 "name": "path",
                 "type": "path",
-                "example": "/example",
-                "default": "/example"
+
+                "ask": {
+                    "en": "Choose a path for cactus.js and style.css"
+                },
+                "example": "/cactus",
+                "default": "/cactus"
             },
             {
                 "name": "synapsenumber",
@@ -58,8 +65,8 @@
             {
                 "name": "homeserver_url",
                 "type": "string",
-                "example": "http://synapse:8008",
-                "default": "http://synapse:8008"
+                "example": "http://localhost:8008",
+                "default": "http://localhost:8008"
             },
             {
                 "name": "cactus_user",
