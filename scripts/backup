@@ -31,7 +31,6 @@ app=$YNH_APP_INSTANCE_NAME
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 web_path=$(ynh_app_setting_get --app=$app --key=web_path)
-homeserver_url=$(ynh_app_setting_get --app=$app --key=homeserver_url)
 cactus_user=$(ynh_app_setting_get --app=$app --key=cactus_user)
 synapse_instance=$(ynh_app_setting_get --app=$app --key=synapse_instance)
 

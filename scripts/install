@@ -27,7 +27,6 @@ ynh_abort_if_errors
 domain=$YNH_APP_ARG_DOMAIN
 path_url=$YNH_APP_ARG_PATH
 is_public=$YNH_APP_ARG_IS_PUBLIC
-homeserver_url=$YNH_APP_ARG_HOMESERVER_URL
 cactus_user=$YNH_APP_ARG_CACTUS_USER
 
 synapsenumber=$YNH_APP_ARG_SYNAPSENUMBER
@@ -85,7 +84,6 @@ ynh_script_progression --message="Storing installation settings..." --time --wei
 
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
-ynh_app_setting_set --app=$app --key=homeserver_url --value=$homeserver_url
 ynh_app_setting_set --app=$app --key=cactus_user --value=$cactus_user
 ynh_app_setting_set --app=$app --key=synapse_instance --value=$synapse_instance
 

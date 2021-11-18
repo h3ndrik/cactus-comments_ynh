@@ -63,12 +63,6 @@
                 "default": "1"
             },
             {
-                "name": "homeserver_url",
-                "type": "string",
-                "example": "http://localhost:8008",
-                "default": "http://localhost:8008"
-            },
-            {
                 "name": "cactus_user",
                 "type": "string",
                 "example": "@cactusbot:example.com",
