@@ -57,13 +57,13 @@
             },
             {
                 "name": "homeserver_url",
-                "type": "path",
+                "type": "string",
                 "example": "http://synapse:8008",
                 "default": "http://synapse:8008"
             },
             {
                 "name": "cactus_user",
-                "type": "user",
+                "type": "string",
                 "example": "@cactusbot:example.com",
                 "default": "@cactusbot:example.com"
             },
