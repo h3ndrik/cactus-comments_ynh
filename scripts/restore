@@ -31,7 +31,10 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-datadir=$(ynh_app_setting_get --app=$app --key=datadir)
+web_path=$(ynh_app_setting_get --app=$app --key=web_path)
+homeserver_url=$(ynh_app_setting_get --app=$app --key=homeserver_url)
+cactus_user=$(ynh_app_setting_get --app=$app --key=cactus_user)
+synapse_instance=$(ynh_app_setting_get --app=$app --key=synapse_instance)
 
 #=================================================
 # CHECK IF THE APP CAN BE RESTORED
@@ -76,13 +79,11 @@ chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
 
 #=================================================
-# RESTORE THE DATA DIRECTORY
+# RESTORE THE WEB-CLIENT DIRECTORY
 #=================================================
-ynh_script_progression --message="Restoring the data directory..." --time --weight=1
+ynh_script_progression --message="Restoring the webclient directory..." --time --weight=1
 
-ynh_restore_file --origin_path="$datadir" --not_mandatory
-
-mkdir -p $datadir
+ynh_restore_file --origin_path="$web_path"
 
 # FIXME: this should be managed by the core in the future
 # Here, as a packager, you may have to tweak the ownerhsip/permissions
@@ -90,18 +91,18 @@ mkdir -p $datadir
 # files in some cases.
 # But FOR THE LOVE OF GOD, do not allow r/x for "others" on the entire folder -
 # this will be treated as a security issue.
-chmod 750 "$datadir"
-chmod -R o-rwx "$datadir"
-chown -R $app:www-data "$datadir"
+chmod 750 "$web_path"
+chmod -R o-rwx "$web_path"
+chown -R $app:www-data "$web_path"
 
 #=================================================
 # RESTORE FAIL2BAN CONFIGURATION
 #=================================================
-ynh_script_progression --message="Restoring the Fail2Ban configuration..." --time --weight=1
+# ynh_script_progression --message="Restoring the Fail2Ban configuration..." --time --weight=1
 
-ynh_restore_file "/etc/fail2ban/jail.d/$app.conf"
-ynh_restore_file "/etc/fail2ban/filter.d/$app.conf"
-ynh_systemd_action --action=restart --service_name=fail2ban
+# ynh_restore_file "/etc/fail2ban/jail.d/$app.conf"
+# ynh_restore_file "/etc/fail2ban/filter.d/$app.conf"
+# ynh_systemd_action --action=restart --service_name=fail2ban
 
 #=================================================
 # SPECIFIC RESTORATION
@@ -120,7 +121,15 @@ ynh_script_progression --message="Restoring various files..." --time --weight=1
 
 ynh_restore_file --origin_path="/etc/cron.d/$app"
 
-ynh_restore_file --origin_path="/etc/$app/"
+ynh_restore_file --origin_path="/etc/matrix-$synapse_instance/app-service/$app.yaml"
+
+#=================================================
+# REGISTER SYNAPSE APP-SERVICE
+#=================================================
+#Add the path to the registration file (registration.yaml by default) to your synapse homeserver.yaml under app_service_config_files.
+/opt/yunohost/matrix-$synapse_instance/update_synapse_for_appservice.sh \
+    || ynh_die "Synapse can't restart with the appservice configuration"
+# Handled by synapse: synapse_ynh adds all registration files added in $app_service_registration_path to the app_service_config_files list
 
 #=================================================
 # RESTORE SYSTEMD

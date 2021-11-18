@@ -5,7 +5,7 @@
 #=================================================
 
 # dependencies used by the app
-pkg_dependencies="deb1 deb2"
+pkg_dependencies="python3-dev python3-venv python3-pip python3-setuptools python3-gunicorn"
 
 #=================================================
 # PERSONAL HELPERS

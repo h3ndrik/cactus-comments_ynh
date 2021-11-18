@@ -6,7 +6,7 @@
         "en": "Cactus Comments is a federated comment system for the web, based on the Matrix protocol.",
         "fr": "Cactus Comments est un système de commentaires fédéré pour le web, basé sur le protocole Matrix."
     },
-    "version": "1.0~ynh1",
+    "version": "0.7.1~ynh1",
     "url": "https://cactus.chat/",
     "upstream": {
         "license": "AGPL-3.0-or-later",
@@ -39,6 +39,32 @@
                 "type": "path",
                 "example": "/example",
                 "default": "/example"
+            },
+			{
+				"name": "synapsenumber",
+				"type": "string",
+				"ask": {
+					"en": "Choose the local synapse instance number to communicate with mautrix_whatsapp",
+					"fr": "Choisissez le numéro de l'instance synapse qui doit communiquer avec mautrix_whatsapp"
+				},
+				"example": "2 (for instance synapse__2)",
+				"help": {
+					"en": "If you installed synapse only once time, then leave default value 1.",
+					"fr": "Si vous n'avez installé qu'une fois synapse, gardez la valeur par défaut 1."
+				},
+				"default": "1"
+			},
+            {
+                "name": "homeserver_url",
+                "type": "path",
+                "example": "http://synapse:8008",
+                "default": "http://synapse:8008"
+            },
+            {
+                "name": "cactus_user",
+                "type": "user",
+                "example": "@cactusbot:example.com",
+                "default": "@cactusbot:example.com"
             },
             {
                 "name": "is_public",

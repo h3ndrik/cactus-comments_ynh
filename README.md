@@ -29,7 +29,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Cactus Comments is a federated comment system for the web, based on the Matrix protocol.
 
-**Shipped version:** 1.0~ynh1
+**Shipped version:** 0.7.1~ynh1
 
 **Demo:** https://cactus.chat/demo/
 

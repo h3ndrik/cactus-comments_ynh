@@ -1,0 +1,20 @@
+# A unique, user-defined ID of the application service which will never change.
+id: "Cactus Comments"
+
+# Where the cactus-appservice is hosted:
+url: "http://__DOMAIN__:__PORT__"
+
+# Unique tokens used to authenticate requests between our service and the
+# homeserver (and the other way). Use the sha256 hashes of something random.
+# CHANGE THESE VALUES.
+as_token: "__AS_TOKEN__"
+hs_token: "__HS_TOKEN__"
+
+# User associated with our service. In this case "@cactusbot:example.com"
+sender_localpart: "__SENDER_LOCALPART__"
+
+namespaces:
+  aliases:
+    - exclusive: true
+      regex: "#comments_.*"
+

@@ -1,5 +1,5 @@
 [Unit]
-Description=Small description of the service
+Description=Cactus Comments Appservice
 After=network.target
 
 [Service]
@@ -7,7 +7,9 @@ Type=simple
 User=__APP__
 Group=__APP__
 WorkingDirectory=__FINALPATH__/
-ExecStart=__FINALPATH__/script
+EnvironmentFile=__FINALPATH__/env
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=__FINALPATH__/venv/bin/gunicorn -w 4 -b 0.0.0.0:5000 --timeout 500 app:create_app_from_env()
 StandardOutput=append:/var/log/__APP__/__APP__.log
 StandardError=inherit
 

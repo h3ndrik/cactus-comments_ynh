@@ -30,7 +30,10 @@ app=$YNH_APP_INSTANCE_NAME
 
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 domain=$(ynh_app_setting_get --app=$app --key=domain)
-datadir=$(ynh_app_setting_get --app=$app --key=datadir)
+web_path=$(ynh_app_setting_get --app=$app --key=web_path)
+homeserver_url=$(ynh_app_setting_get --app=$app --key=homeserver_url)
+cactus_user=$(ynh_app_setting_get --app=$app --key=cactus_user)
+synapse_instance=$(ynh_app_setting_get --app=$app --key=synapse_instance)
 
 #=================================================
 # DECLARE DATA AND CONF FILES TO BACKUP
@@ -49,10 +52,10 @@ ynh_print_info --message="Declaring files to be backed up..."
 ynh_backup --src_path="$final_path"
 
 #=================================================
-# BACKUP THE DATA DIR
+# BACKUP THE WEB-CLIENT DIR
 #=================================================
 
-ynh_backup --src_path="$datadir" --is_big
+ynh_backup --src_path="$web_path"
 
 #=================================================
 # BACKUP THE NGINX CONFIGURATION
@@ -64,8 +67,8 @@ ynh_backup --src_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 # BACKUP FAIL2BAN CONFIGURATION
 #=================================================
 
-ynh_backup --src_path="/etc/fail2ban/jail.d/$app.conf"
-ynh_backup --src_path="/etc/fail2ban/filter.d/$app.conf"
+# ynh_backup --src_path="/etc/fail2ban/jail.d/$app.conf"
+# ynh_backup --src_path="/etc/fail2ban/filter.d/$app.conf"
 
 #=================================================
 # SPECIFIC BACKUP
@@ -87,7 +90,7 @@ ynh_backup --src_path="/etc/systemd/system/$app.service"
 
 ynh_backup --src_path="/etc/cron.d/$app"
 
-ynh_backup --src_path="/etc/$app/"
+ynh_backup --src_path="/etc/matrix-$synapse_instance/app-service/$app.yaml"
 
 #=================================================
 # END OF SCRIPT

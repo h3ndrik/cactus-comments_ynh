@@ -19,7 +19,10 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 port=$(ynh_app_setting_get --app=$app --key=port)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-datadir=$(ynh_app_setting_get --app=$app --key=datadir)
+web_path=$(ynh_app_setting_get --app=$app --key=web_path)
+homeserver_url=$(ynh_app_setting_get --app=$app --key=homeserver_url)
+cactus_user=$(ynh_app_setting_get --app=$app --key=cactus_user)
+synapse_instance=$(ynh_app_setting_get --app=$app --key=synapse_instance)
 
 #=================================================
 # STANDARD REMOVE
@@ -73,8 +76,8 @@ ynh_secure_remove --file="$final_path"
 # Remove the data directory if --purge option is used
 if [ "${YNH_APP_PURGE:-0}" -eq 1 ]
 then
-	ynh_script_progression --message="Removing app data directory..." --time --weight=1
-	ynh_secure_remove --file="$datadir"
+	ynh_script_progression --message="Removing webclient directory..." --time --weight=1
+	ynh_secure_remove --file="$web_path"
 fi
 
 #=================================================
@@ -98,10 +101,10 @@ fi
 #=================================================
 # REMOVE FAIL2BAN CONFIGURATION
 #=================================================
-ynh_script_progression --message="Removing Fail2ban configuration..." --time --weight=1
+# ynh_script_progression --message="Removing Fail2ban configuration..." --time --weight=1
 
 # Remove the dedicated Fail2Ban config
-ynh_remove_fail2ban_config
+# ynh_remove_fail2ban_config
 
 #=================================================
 # SPECIFIC REMOVE
@@ -114,7 +117,7 @@ ynh_script_progression --message="Removing various files..." --time --weight=1
 ynh_secure_remove --file="/etc/cron.d/$app"
 
 # Remove a directory securely
-ynh_secure_remove --file="/etc/$app"
+ynh_secure_remove --file="/etc/matrix-$synapse_instance/app-service/$app.yaml"
 
 # Remove the log files
 ynh_secure_remove --file="/var/log/$app"

@@ -1,5 +1,5 @@
-SOURCE_URL=url of app's source
-SOURCE_SUM=sha256 checksum
+SOURCE_URL=https://gitlab.com/cactus-comments/cactus-appservice/-/archive/0.7.1/cactus-appservice-0.7.1.tar.gz
+SOURCE_SUM=54ac090b50df770e5bb4ceec0e814f8b4e1d75086f8c2ae6e38a87247b0d6930
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=true
