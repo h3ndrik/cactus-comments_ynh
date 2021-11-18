@@ -41,20 +41,20 @@
                 "example": "/example",
                 "default": "/example"
             },
-			{
-				"name": "synapsenumber",
-				"type": "string",
-				"ask": {
-					"en": "Choose the local synapse instance number to communicate with mautrix_whatsapp",
-					"fr": "Choisissez le numéro de l'instance synapse qui doit communiquer avec mautrix_whatsapp"
-				},
-				"example": "2 (for instance synapse__2)",
-				"help": {
-					"en": "If you installed synapse only once time, then leave default value 1.",
-					"fr": "Si vous n'avez installé qu'une fois synapse, gardez la valeur par défaut 1."
-				},
-				"default": "1"
-			},
+            {
+                "name": "synapsenumber",
+                "type": "string",
+                "ask": {
+                    "en": "Choose the local synapse instance number to communicate with",
+                    "fr": "Choisissez le numéro de l'instance synapse qui doit communiquer"
+                },
+                "example": "2 (for instance synapse__2)",
+                "help": {
+                    "en": "If you installed synapse only once time, then leave default value 1.",
+                    "fr": "Si vous n'avez installé qu'une fois synapse, gardez la valeur par défaut 1."
+                },
+                "default": "1"
+            },
             {
                 "name": "homeserver_url",
                 "type": "path",
