@@ -65,8 +65,8 @@
             {
                 "name": "cactus_user",
                 "type": "string",
-                "example": "@cactusbot:example.com",
-                "default": "@cactusbot:example.com"
+                "example": "cactusbot",
+                "default": "cactusbot"
             },
             {
                 "name": "is_public",

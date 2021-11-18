@@ -11,7 +11,7 @@ as_token: "__AS_TOKEN__"
 hs_token: "__HS_TOKEN__"
 
 # User associated with our service. In this case "@cactusbot:example.com"
-sender_localpart: "__SENDER_LOCALPART__"
+sender_localpart: "__CACTUS_USER__"
 
 namespaces:
   aliases:

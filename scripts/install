@@ -245,9 +245,6 @@ ynh_script_progression --message="Registering synapse appservice..." --time --we
 as_token=$(ynh_string_random --length=64)
 hs_token=$(ynh_string_random --length=64)
 
-sender_domain=$(echo "$cactus_user" | cut -d':' -f2)
-sender_localpart=$(echo "$cactus_user" | cut -d':' -f1 | cut -d'@' -f2)
-
 ynh_add_config --template="env" --destination="$final_path/env"
 
 ynh_add_config --template="cactus.yaml" --destination="/etc/matrix-$synapse_instance/app-service/$app.yaml"
