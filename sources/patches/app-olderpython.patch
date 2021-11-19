@@ -1,0 +1,13 @@
+diff --git a/app.py b/app.py
+index 63fadf3..613c223 100644
+--- a/app.py
++++ b/app.py
+@@ -95,7 +95,7 @@ def create_app_from_env():
+         print("No homeserver url provided (CACTUS_HOMESERVER_URL).", file=sys.stderr)
+         sys.exit(CONFIG_ERROR_EXITCODE)
+ 
+-    homeserver = homeserver.removesuffix("/")
++    homeserver = homeserver.strip("/")
+     if not (homeserver.startswith("http://") or homeserver.startswith("https://")):
+         print(
+             "Homeserver url missing http/s scheme (CACTUS_HOMESERVER_URL).",
